@@ -1,0 +1,244 @@
+body {
+  background-image: url("components/img/grass.jpg");
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/*game grid*/
+.container {
+  display: grid;
+  position: relative;
+  padding-bottom: 5px;
+  grid-template-columns: 33.33% 33.3% 33.3%;
+  grid-template-rows: 100px 300px auto;
+  /* -webkit-user-select: none; */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
+  background-color: transparent;
+}
+
+.header {
+  background-color: red;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  font-size: 300%;
+  text-align: center;
+  line-height: 180%;
+  border: 2px solid black;
+}
+
+.stopButton {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  background-color: white;
+  background-size: 100%;
+  background-position: center;
+  font-size: 300%;
+  text-align: center;
+  line-height: 180%;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.startButton {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  height: 100px;
+  background-size: 100%;
+  background-position: center;
+  font-size: 300%;
+  text-align: center;
+  line-height: 180%;
+  border: 2px solid black;
+  cursor: pointer;
+  background-color: rgb(8, 172, 108);
+}
+
+.left {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+}
+
+.middle {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+}
+
+.right {
+  grid-column: 3/4;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+}
+
+.left-active {
+  background-image: url("components/img/mole.jpg");
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  background-image: transparent;
+  z-index: 1;
+}
+
+.middle-active {
+  background-image: url("components/img/mole.jpg");
+  grid-column: 2/3;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  background-image: transparent;
+  z-index: 1;
+}
+
+.right-active {
+  background-image: url("components/img/mole.jpg");
+  grid-column: 3/4;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  background-image: transparent;
+  z-index: 1;
+}
+.left-game-over {
+  background-image: url("components/img/explosion.gif");
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  background-image: transparent;
+  z-index: 1;
+}
+.middle-game-over {
+  background-image: url("components/img/explosion.gif");
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  background-image: transparent;
+  z-index: 1;
+}
+.right-game-over {
+  background-image: url("components/img/explosion.gif");
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  background-image: transparent;
+  z-index: 1;
+}
+
+.Highscores {
+  color: black;
+}
+
+.pop-up {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  display: none;
+  /* border-image: url("grass.jpg") 25% repeat; */
+}
+
+.pop-up-active {
+  width: 100%;
+  height: 170%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  border-image: url("components/img/grass.jpg") 25% repeat;
+}
+
+.pop-up-content {
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  border-radius: 4px;
+  outline: black 3px;
+  display: flex;
+  position: relative;
+}
+
+.gameOver {
+  font-size: xx-large;
+  position: absolute;
+  top: 12%;
+  left: 32%;
+  transform: translate(-12%, -32%);
+}
+
+.pop-up-mole {
+  background-image: url("components/img/mole2.jpg");
+  background-position: center;
+  background-size: contain;
+  height: 45%;
+  width: 45%;
+  position: absolute;
+  top: 35%;
+  left: 39%;
+  transform: translate(-30%, -32%);
+}
+
+.nameInput {
+  margin: auto;
+  position: absolute;
+  top: 69%;
+  left: 38%;
+  transform: translate(-30%, -32%);
+}
+
+.submitButton {
+  position: absolute;
+  top: 150%;
+  left: 38%;
+  transform: translate(-30%, -35%);
+  height: 100%;
+  width: 40%;
+  background-color: rgba(33, 156, 33, 0.582);
+  color: rgb(5, 5, 5);
+  text-decoration: none;
+  border-radius: 15%;
+  cursor: pointer;
+}
+
+.highscoreContainer {
+  width: 300%;
+  display: flex;
+}
