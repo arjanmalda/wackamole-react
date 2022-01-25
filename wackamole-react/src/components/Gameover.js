@@ -2,14 +2,19 @@ import React from "react";
 import { useState } from "react";
 import { NameContext } from "./App";
 
-const Gameover = ({ stylingPopup, updateHighscores, score }) => {
+const Gameover = ({ stylingPopup, score, updateHighscoreArray }) => {
   const [name, setName] = useState("");
 
-  const updateHighscoreArray = (e) => {
-    e.preventDefault();
+  function handleChange(e) {
+    setName(e.target.value);
+  }
 
-    updateHighscores({ name, score });
-    // setName("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setName("");
+    console.log("score = " + score + ", name = " + name);
+
+    updateHighscoreArray(name);
   };
 
   return (
@@ -18,19 +23,19 @@ const Gameover = ({ stylingPopup, updateHighscores, score }) => {
         <div className="pop-up-content">
           <div className="gameOver">Game over!</div>
           <div className="pop-up-mole"></div>
-          <form className="nameInput" action="" onSubmit={updateHighscoreArray}>
+          <form className="nameInput" action="" onSubmit={handleSubmit}>
             <input
               className="playerNameInput"
               type="text"
               placeholder="Name"
-              value={""}
-              onChange={(e) => setName(e.target.name)}
+              value={name}
+              onChange={handleChange}
             />
             <input
               value={"Submit"}
               className="submitButton"
               type="submit"
-              // onClick={updateHighscoreArray}
+              onChange={handleChange}
             />
           </form>
         </div>

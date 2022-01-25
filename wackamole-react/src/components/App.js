@@ -17,28 +17,26 @@ const App = () => {
   // const [counter, setCounter] = useState(0);
   const [score, setScore] = useState(0);
 
-  let initialHighscoreArray = [
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-  ];
+  let counter = 0;
 
-  const [highscoreArray, setHighscoreArray] = useState(initialHighscoreArray);
+  const [highscoreArray, setHighscoreArray] = useState([
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+    ["a", 0],
+  ]);
 
-  const updateHighscores = (name, score) => {
-    highscoreArray.unshift([name, score]);
-    highscoreArray.pop();
+  const updateHighscoreArray = (name) => {
+    setHighscoreArray(highscoreArray.unshift([name, score]));
+    setHighscoreArray(highscoreArray.pop());
     console.log(highscoreArray);
   };
-
-  let counter = 0;
 
   const start = () => {
     counter = Math.floor(Math.random() * 3);
@@ -148,10 +146,9 @@ const App = () => {
         stylingRight={stylingRight}
       />
       <Gameover
-        highscoreArray={highscoreArray}
         stylingPopup={stylingPopup}
         score={score}
-        updateHighscores={updateHighscores}
+        updateHighscoreArray={updateHighscoreArray}
       />
       <Highscores />
     </div>
