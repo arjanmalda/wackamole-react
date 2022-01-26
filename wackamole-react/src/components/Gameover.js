@@ -12,7 +12,6 @@ const Gameover = ({ stylingPopup, score, updateHighscoreArray }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setName("");
-    console.log("score = " + score + ", name = " + name);
 
     updateHighscoreArray(name);
   };

@@ -1,9 +1,22 @@
 import Highscore from "./Highscore";
 
-const Highscores = () => {
+const Highscores = ({ highscoreArray }) => {
+  console.log("Highscores: ", highscoreArray);
+
   return (
     <div className="highscoreContainer">
-      <Highscore />
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Highscore</th>
+          </tr>
+        </thead>
+        <tbody>
+          <Highscore highscoreArray={highscoreArray} />
+        </tbody>
+      </table>
     </div>
   );
 };

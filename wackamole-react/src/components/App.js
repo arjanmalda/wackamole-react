@@ -3,9 +3,11 @@ import Game from "./Game";
 import React, { useState } from "react";
 import Highscores from "./Highscores";
 import Gameover from "./Gameover";
+// const Datastore = require("nedb");
+// const database = new Datastore();
+// database.loadDatabase();
 
-const AUDIO = new Audio("./components/sound-effects/explosionSound.mp3");
-let timer;
+// const AUDIO = new Audio("./components/sound-effects/explosionSound.mp3");
 
 const App = () => {
   const [stylingLeft, setStylingLeft] = useState("left");
@@ -13,33 +15,25 @@ const App = () => {
   const [stylingRight, setStylingRight] = useState("right");
   const [stylingPopup, setStylingPopup] = useState("pop-up");
 
-  // const [playerName, setPlayerName] = useState("");
-  // const [counter, setCounter] = useState(0);
-  const [score, setScore] = useState(0);
-
-  let counter = 0;
+  let [score, setScore] = useState(0);
+  let [counter, setCounter] = useState(0);
+  const [timer, setTimer] = useState("");
 
   const [highscoreArray, setHighscoreArray] = useState([
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
-    ["a", 0],
+    ["Arjan", 100],
+    ["Arjan", 4],
+    ["Arjan", 3],
+    ["Arjan", 2],
+    ["Arjan", 1],
+    ["Arjan", 0],
+    ["Arjan", 0],
+    ["Arjan", 0],
+    ["Arjan", 0],
+    ["Arjan", 0],
   ]);
 
-  const updateHighscoreArray = (name) => {
-    setHighscoreArray(highscoreArray.unshift([name, score]));
-    setHighscoreArray(highscoreArray.pop());
-    console.log(highscoreArray);
-  };
-
   const start = () => {
-    counter = Math.floor(Math.random() * 3);
+    setCounter((counter = Math.floor(Math.random() * 3)));
 
     if (counter === 0) {
       setStylingLeft("left-active");
@@ -60,41 +54,13 @@ const App = () => {
     }
   };
 
-  const leftClick = () => {
-    if (counter === 0) {
-      setScore((prevScore) => prevScore + 1);
-    } else {
-      stop();
-    }
-    console.log(counter);
-    console.log("score:" + score);
-    console.log(stylingLeft);
-  };
-
-  const middleClick = () => {
-    if (counter === 1) {
-      setScore((prevScore) => prevScore + 1);
-    } else {
-      stop();
-    }
-    console.log(counter);
-    console.log("score:" + score);
-    console.log(stylingMiddle);
-  };
-
-  const rightClick = () => {
-    if (counter === 2) {
-      setScore((prevScore) => prevScore + 1);
-    } else {
-      stop();
-    }
-    console.log(counter);
-    console.log("score:" + score);
-    console.log(stylingRight);
-  };
-
   const run = () => {
-    timer = setInterval(start, 800);
+    setScore((score = 0));
+    setTimer(
+      setInterval(() => {
+        start();
+      }, 800)
+    );
   };
 
   const pause = () => {
@@ -123,13 +89,50 @@ const App = () => {
     }
   };
 
-  // const assignScore = () => {
-  //   if (score >= highscoreArray[0][1]) {
-  //     highscoreArray.unshift([NameContext.Provider.name, score]);
-  //     highscoreArray.splice(-1);
-  //   }
-  //   console.log(highscoreArray);
-  // };
+  const leftClick = () => {
+    if (counter === 0) {
+      setScore(score + 1);
+    } else {
+      stop();
+    }
+  };
+
+  const middleClick = () => {
+    if (counter === 1) {
+      setScore(score + 1);
+    } else {
+      stop();
+    }
+  };
+
+  const rightClick = () => {
+    if (counter === 2) {
+      setScore(score + 1);
+    } else {
+      stop();
+    }
+  };
+
+  const updateHighscoreArray = (name) => {
+    if (score >= highscoreArray[0][1]) {
+      setHighscoreArray([highscoreArray.unshift([name, score])]);
+      setHighscoreArray(highscoreArray.pop());
+    } else {
+      for (let i = 1; i < highscoreArray.length; i++) {
+        if (score >= highscoreArray[i][1]) {
+          setHighscoreArray(highscoreArray.splice(i, 0, [name, score]));
+          setHighscoreArray(highscoreArray.pop());
+          break;
+        } else if (score >= highscoreArray[9][1]) {
+          setHighscoreArray(highscoreArray.splice(9, 1, [name, score]));
+        }
+      }
+    }
+    setHighscoreArray(highscoreArray, ...highscoreArray);
+    setStylingPopup("pop-up");
+
+    console.log("App: ", highscoreArray);
+  };
 
   return (
     <div className="container">
@@ -147,10 +150,9 @@ const App = () => {
       />
       <Gameover
         stylingPopup={stylingPopup}
-        score={score}
         updateHighscoreArray={updateHighscoreArray}
       />
-      <Highscores />
+      <Highscores highscoreArray={highscoreArray} />
     </div>
   );
 };

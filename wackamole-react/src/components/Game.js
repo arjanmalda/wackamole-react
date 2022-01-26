@@ -9,7 +9,6 @@ const Game = ({
   leftClick,
   middleClick,
   rightClick,
-  stop,
 }) => {
   return (
     <>
