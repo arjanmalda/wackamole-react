@@ -1,8 +1,4 @@
-import Highscore from "./Highscore";
-
-const Highscores = ({ highscoreArray }) => {
-  console.log("Highscores: ", highscoreArray);
-
+const Highscores = ({ highscores, getHighscores }) => {
   return (
     <div className="highscoreContainer">
       <table>
@@ -14,7 +10,16 @@ const Highscores = ({ highscoreArray }) => {
           </tr>
         </thead>
         <tbody>
-          <Highscore highscoreArray={highscoreArray} />
+          {highscores &&
+            highscores.map((highscore) => {
+              return (
+                <tr key={highscore.id}>
+                  <td>{highscore.id}</td>
+                  <td>{highscore.name}</td>
+                  <td>{highscore.score}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>

@@ -1,13 +1,9 @@
 import Header from "./Header";
 import Game from "./Game";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Highscores from "./Highscores";
 import Gameover from "./Gameover";
-// const Datastore = require("nedb");
-// const database = new Datastore();
-// database.loadDatabase();
-
-// const AUDIO = new Audio("./components/sound-effects/explosionSound.mp3");
+import sound from "./sound-effects/explosionSound.mp3";
 
 const App = () => {
   const [stylingLeft, setStylingLeft] = useState("left");
@@ -19,18 +15,20 @@ const App = () => {
   let [counter, setCounter] = useState(0);
   const [timer, setTimer] = useState("");
 
-  const [highscoreArray, setHighscoreArray] = useState([
-    ["Arjan", 100],
-    ["Arjan", 4],
-    ["Arjan", 3],
-    ["Arjan", 2],
-    ["Arjan", 1],
-    ["Arjan", 0],
-    ["Arjan", 0],
-    ["Arjan", 0],
-    ["Arjan", 0],
-    ["Arjan", 0],
-  ]);
+  const [highscores, setHighscores] = useState(null);
+
+  const getHighscores = () => {
+    fetch("http://localhost:5000/highscores")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setHighscores(data);
+      });
+  };
+  useEffect(() => {
+    getHighscores();
+  }, []);
 
   const start = () => {
     setCounter((counter = Math.floor(Math.random() * 3)));
@@ -68,7 +66,6 @@ const App = () => {
   };
 
   const stop = () => {
-    // AUDIO.play();
     clearInterval(timer);
 
     if (counter === 1 || counter === 2) {
@@ -89,11 +86,17 @@ const App = () => {
     }
   };
 
+  const playAudio = () => {
+    const audio = new Audio(sound);
+    audio.play();
+  };
+
   const leftClick = () => {
     if (counter === 0) {
       setScore(score + 1);
     } else {
       stop();
+      playAudio();
     }
   };
 
@@ -102,6 +105,7 @@ const App = () => {
       setScore(score + 1);
     } else {
       stop();
+      playAudio();
     }
   };
 
@@ -110,28 +114,59 @@ const App = () => {
       setScore(score + 1);
     } else {
       stop();
+      playAudio();
     }
   };
 
-  const updateHighscoreArray = (name) => {
-    if (score >= highscoreArray[0][1]) {
-      setHighscoreArray([highscoreArray.unshift([name, score])]);
-      setHighscoreArray(highscoreArray.pop());
+  const replaceHighscoreData = (i, name, score) => {
+    fetch(`http://localhost:5000/highscores/${i}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        id: i + 1,
+        name: name,
+        score: score,
+      }),
+    }).then(() => {});
+    console.log(`highscores replaced`, highscores);
+  };
+
+  const updateHighscores = (name) => {
+    const newHighscores = highscores;
+
+    if (score >= newHighscores[0].score) {
+      newHighscores.unshift({ id: 1, name: name, score: score });
+      newHighscores.pop();
     } else {
-      for (let i = 1; i < highscoreArray.length; i++) {
-        if (score >= highscoreArray[i][1]) {
-          setHighscoreArray(highscoreArray.splice(i, 0, [name, score]));
-          setHighscoreArray(highscoreArray.pop());
+      for (let i = 1; i < newHighscores.length; i++) {
+        if (score >= newHighscores[i].score) {
+          newHighscores.splice(i, 0, {
+            id: i + 1,
+            name: name,
+            score: score,
+          });
+          newHighscores.pop();
           break;
-        } else if (score >= highscoreArray[9][1]) {
-          setHighscoreArray(highscoreArray.splice(9, 1, [name, score]));
+        } else if (score >= newHighscores[9].score) {
+          newHighscores.splice(9, 1, { id: 10, name: name, score: score });
         }
       }
     }
-    setHighscoreArray(highscoreArray, ...highscoreArray);
-    setStylingPopup("pop-up");
+    // re-arrange id's
+    for (let i = 0; i < newHighscores.length; i++) {
+      newHighscores[i].id = i + 1;
+      replaceHighscoreData(
+        i + 1,
+        newHighscores[i].name,
+        newHighscores[i].score
+      );
+    }
+    setHighscores(highscores, newHighscores);
 
-    console.log("App: ", highscoreArray);
+    setStylingPopup("pop-up");
+    setStylingMiddle("middle");
+    setStylingLeft("left");
+    setStylingRight("right");
   };
 
   return (
@@ -143,18 +178,21 @@ const App = () => {
         rightClick={rightClick}
         run={run}
         pause={pause}
-        stop={stop}
         stylingLeft={stylingLeft}
         stylingMiddle={stylingMiddle}
         stylingRight={stylingRight}
       />
       <Gameover
         stylingPopup={stylingPopup}
-        updateHighscoreArray={updateHighscoreArray}
+        updateHighscores={updateHighscores}
       />
-      <Highscores highscoreArray={highscoreArray} />
+      {highscores && (
+        <Highscores highscores={highscores} getHighscores={getHighscores} />
+      )}
     </div>
   );
 };
+
+// };
 
 export default App;

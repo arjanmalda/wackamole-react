@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { NameContext } from "./App";
+import Highscores from "./Highscores";
 
-const Gameover = ({ stylingPopup, score, updateHighscoreArray }) => {
+const Gameover = ({ stylingPopup, updateHighscores }) => {
   const [name, setName] = useState("");
 
   function handleChange(e) {
@@ -13,7 +14,7 @@ const Gameover = ({ stylingPopup, score, updateHighscoreArray }) => {
     e.preventDefault();
     setName("");
 
-    updateHighscoreArray(name);
+    updateHighscores(name);
   };
 
   return (

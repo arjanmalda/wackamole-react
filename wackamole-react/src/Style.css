@@ -136,7 +136,7 @@ body {
 }
 .middle-game-over {
   background-image: url("components/img/explosion.gif");
-  grid-column: 1/2;
+  grid-column: 2/3;
   grid-row: 2/3;
   background-repeat: no-repeat;
   background-size: contain;
@@ -147,7 +147,7 @@ body {
 }
 .right-game-over {
   background-image: url("components/img/explosion.gif");
-  grid-column: 1/2;
+  grid-column: 3/4;
   grid-row: 2/3;
   background-repeat: no-repeat;
   background-size: contain;
@@ -155,10 +155,6 @@ body {
   cursor: pointer;
   background-image: transparent;
   z-index: 1;
-}
-
-.Highscores {
-  color: black;
 }
 
 .pop-up {
@@ -197,6 +193,7 @@ body {
   display: flex;
   position: relative;
   z-index: 2;
+  border: black 5px;
 }
 
 .gameOver {
