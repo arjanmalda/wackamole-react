@@ -1,4 +1,4 @@
-const Highscores = ({ highscores, getHighscores }) => {
+const Highscores = ({ highscores }) => {
   return (
     <div className="highscoreContainer">
       <table>

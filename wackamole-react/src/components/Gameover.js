@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { NameContext } from "./App";
-import Highscores from "./Highscores";
+import Button from "./Button";
 
 const Gameover = ({ stylingPopup, updateHighscores }) => {
   const [name, setName] = useState("");
@@ -31,12 +30,14 @@ const Gameover = ({ stylingPopup, updateHighscores }) => {
               value={name}
               onChange={handleChange}
             />
-            <input
+            <Button
               value={"Submit"}
-              className="submitButton"
+              // className="submitButton"
               type="submit"
               onChange={handleChange}
-            />
+            >
+              Submit!
+            </Button>
           </form>
         </div>
       </div>

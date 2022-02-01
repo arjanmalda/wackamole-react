@@ -186,9 +186,7 @@ const App = () => {
         stylingPopup={stylingPopup}
         updateHighscores={updateHighscores}
       />
-      {highscores && (
-        <Highscores highscores={highscores} getHighscores={getHighscores} />
-      )}
+      {highscores && <Highscores highscores={highscores} />}
     </div>
   );
 };
