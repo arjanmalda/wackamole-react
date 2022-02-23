@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Highscores = ({ highscores }) => {
   return (
     <div className="highscoreContainer">
@@ -24,6 +26,17 @@ const Highscores = ({ highscores }) => {
       </table>
     </div>
   );
+};
+
+Highscores.propTypes = {
+  backgroundColor: PropTypes.string,
+  color: PropTypes.string,
+  label: PropTypes.string,
+  size: PropTypes.string,
+  borderRadius: PropTypes.string,
+  margin: PropTypes.string,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.string,
 };
 
 export default Highscores;

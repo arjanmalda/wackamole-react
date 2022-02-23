@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5000",
+    "server": "json-server --watch database.json --port 5000",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -59,6 +59,7 @@
     "@storybook/node-logger": "^6.4.16",
     "@storybook/preset-create-react-app": "^4.0.0",
     "@storybook/react": "^6.4.16",
+    "storybook-addon-pseudo-states": "^1.0.0",
     "webpack": "^5.67.0"
   }
 }

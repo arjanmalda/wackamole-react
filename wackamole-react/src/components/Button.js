@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 function Button({
+  value,
   label = "Submit!",
   backgroundColor = "#04AA6D",
   size = "lg",
@@ -16,12 +17,13 @@ function Button({
     borderRadius: "10px",
     border: "none",
     cursor: "pointer",
-    margin: "35px",
+    margin: "1%",
     alignSelf: "center",
+    fontWeight: "700",
     fontFamily: "Arial, Helvetica, sans-serif",
   };
   return (
-    <button onClick={handleClick} style={style}>
+    <button onClick={handleClick} style={style} value={value} type={"submit"}>
       {label}
     </button>
   );
@@ -33,7 +35,7 @@ Button.propTypes = {
   size: PropTypes.string,
   borderRadius: PropTypes.string,
   margin: PropTypes.string,
-  // fontFamily: PropTypes.font,
+  fontFamily: PropTypes.string,
 };
 
 export default Button;

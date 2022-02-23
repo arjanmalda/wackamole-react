@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 
 export default {
-  title: "Components/Button",
+  title: "Wackamole/Button",
   component: Button,
   argTypes: { handleClick: { action: "handleClick" } },
 };

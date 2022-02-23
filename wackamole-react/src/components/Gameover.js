@@ -1,19 +1,35 @@
 import React from "react";
 import { useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
 
 const Gameover = ({ stylingPopup, updateHighscores }) => {
   const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+
+  const nameValidation = () => {};
 
   function handleChange(e) {
     setName(e.target.value);
+
+    const regEx =
+      /^(?!\s*$)[\s[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ._-]+$/g;
+    console.log(name);
+    if (regEx.test(name)) {
+      setMessage("Valid name");
+    } else {
+      setMessage("Name is not valid");
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setName("");
-
-    updateHighscores(name);
+    if (message === "Valid name") {
+      setTimeout(() => {
+        updateHighscores(name);
+        setName("");
+      }, 500);
+    }
   };
 
   return (
@@ -23,21 +39,28 @@ const Gameover = ({ stylingPopup, updateHighscores }) => {
           <div className="gameOver">Game over!</div>
           <div className="pop-up-mole"></div>
           <form className="nameInput" action="" onSubmit={handleSubmit}>
-            <input
-              className="playerNameInput"
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={handleChange}
-            />
-            <Button
-              value={"Submit"}
-              // className="submitButton"
-              type="submit"
-              onChange={handleChange}
+            <div
+              style={{
+                marginTop: "1.5rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "12px",
+              }}
             >
-              Submit!
-            </Button>
+              <Input value={name} onChange={handleChange} />
+              <div>{message}</div>
+              <Button
+                value={"Submit"}
+                handleClick={handleSubmit}
+                onClick={nameValidation}
+                // className="submitButton"
+                // type={"submit"}
+              >
+                Submit!
+              </Button>
+            </div>
           </form>
         </div>
       </div>

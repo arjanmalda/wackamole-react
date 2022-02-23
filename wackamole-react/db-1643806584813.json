@@ -1,0 +1,54 @@
+{
+  "highscores": [
+    {
+      "id": 1,
+      "name": "Test1",
+      "score": 19
+    },
+    {
+      "id": 2,
+      "name": "Test",
+      "score": 19
+    },
+    {
+      "id": 3,
+      "name": "Arjan",
+      "score": 18
+    },
+    {
+      "id": 4,
+      "name": "Arjan",
+      "score": 16
+    },
+    {
+      "id": 5,
+      "name": "",
+      "score": 15
+    },
+    {
+      "id": 6,
+      "name": "test",
+      "score": 15
+    },
+    {
+      "id": 7,
+      "name": "",
+      "score": 14
+    },
+    {
+      "id": 8,
+      "name": "",
+      "score": 14
+    },
+    {
+      "id": 9,
+      "name": "Arjan",
+      "score": 14
+    },
+    {
+      "id": 10,
+      "name": "Arjan",
+      "score": 14
+    }
+  ]
+}

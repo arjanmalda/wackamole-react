@@ -2,53 +2,53 @@
   "highscores": [
     {
       "id": 1,
+      "name": "",
+      "score": 34
+    },
+    {
+      "id": 2,
+      "name": "",
+      "score": 23
+    },
+    {
+      "id": 3,
+      "name": "",
+      "score": 19
+    },
+    {
+      "id": 4,
+      "name": "",
+      "score": 19
+    },
+    {
+      "id": 5,
+      "name": "",
+      "score": 19
+    },
+    {
+      "id": 6,
+      "name": "",
+      "score": 19
+    },
+    {
+      "id": 7,
       "name": "Test1",
       "score": 19
     },
     {
-      "id": 2,
+      "id": 8,
       "name": "Test",
       "score": 19
     },
     {
-      "id": 3,
+      "id": 9,
       "name": "Arjan",
       "score": 18
     },
     {
-      "id": 4,
-      "name": "Arjan",
-      "score": 16
-    },
-    {
-      "id": 5,
-      "name": "test",
-      "score": 15
-    },
-    {
-      "id": 6,
-      "name": "Arjan",
-      "score": 14
-    },
-    {
-      "id": 7,
-      "name": "Arjan",
-      "score": 14
-    },
-    {
-      "id": 8,
-      "name": "Arjan",
-      "score": 12
-    },
-    {
-      "id": 9,
-      "name": "",
-      "score": 10
-    },
-    {
       "id": 10,
-      "name": "Arjan",
-      "score": 10
+      "name": "",
+      "score": 17
     }
   ]
 }

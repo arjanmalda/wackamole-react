@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Highscores from "./Highscores";
 import Gameover from "./Gameover";
 import sound from "./sound-effects/explosionSound.mp3";
+import { LoginSlider } from "./LoginSlider";
 
 const App = () => {
   const [stylingLeft, setStylingLeft] = useState("left");
@@ -170,24 +171,29 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <Header score={score} />
-      <Game
-        leftClick={leftClick}
-        middleClick={middleClick}
-        rightClick={rightClick}
-        run={run}
-        pause={pause}
-        stylingLeft={stylingLeft}
-        stylingMiddle={stylingMiddle}
-        stylingRight={stylingRight}
-      />
-      <Gameover
-        stylingPopup={stylingPopup}
-        updateHighscores={updateHighscores}
-      />
-      {highscores && <Highscores highscores={highscores} />}
-    </div>
+    <>
+      <div className="LoginContainer">
+        <LoginSlider />
+      </div>
+      <div className="container">
+        <Header score={score} />
+        <Game
+          leftClick={leftClick}
+          middleClick={middleClick}
+          rightClick={rightClick}
+          run={run}
+          pause={pause}
+          stylingLeft={stylingLeft}
+          stylingMiddle={stylingMiddle}
+          stylingRight={stylingRight}
+        />
+        <Gameover
+          stylingPopup={stylingPopup}
+          updateHighscores={updateHighscores}
+        />
+        {highscores && <Highscores highscores={highscores} />}
+      </div>
+    </>
   );
 };
 
